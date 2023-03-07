@@ -5,6 +5,7 @@ const form = document.querySelector('.feedback-form');
 const input = document.querySelector('.feedback-form input');
 const textarea = document.querySelector('.feedback-form textarea');
 const STORAGE_KEY = 'feedback-form-state';
+const formData = {};
 
 form.addEventListener('input', lodashThrottle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
@@ -12,7 +13,6 @@ form.addEventListener('submit', onFormSubmit);
 restoresFormData();
 
 function onFormInput(evt) {
-  const formData = {};
   // добавляет свойства (ключ и значение) в объект данных формы
   formData[evt.target.name] = evt.target.value;
   // записывает  данные в web-хранилище Local Storage
