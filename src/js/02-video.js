@@ -4,7 +4,7 @@ import Player from '@vimeo/player';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 const CURRENT_TIME = 'videoplayer-current-time';
-const timeData = JSON.parse(localStorage.getItem(CURRENT_TIME));
+const timeData = localStorage.getItem(CURRENT_TIME);
 
 // слушаттель события timeupdate
 player.on('timeupdate', lodashThrottle(onPlay, 1000));
@@ -12,7 +12,7 @@ player.on('timeupdate', lodashThrottle(onPlay, 1000));
 player.setCurrentTime(timeData);
 
 function onPlay(data) {
-  const timeData = JSON.stringify(data.seconds);
+  const timeData = data.seconds;
 
   localStorage.setItem(CURRENT_TIME, timeData);
 }
